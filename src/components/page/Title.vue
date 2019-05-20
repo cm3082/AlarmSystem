@@ -1,7 +1,7 @@
 <template lang="pug">
   .title
     .title-line |
-    .title-text {{view.title}}
+    .title-text {{view.title.zhName}}
 </template>
 
 <script>
@@ -29,7 +29,7 @@
   .title {
     display: flex;
     padding: 1rem 0;
-    border-bottom: solid 0.3rem var(--grey);
+    border-bottom: solid 0.1rem var(--dark_grey);
     .title-line {
       color: var(--blue_green);
       font-weight: bolder;

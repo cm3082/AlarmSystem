@@ -10,7 +10,7 @@
       el-menu.el-menu-vertical-demo(
       @select='select',
       :collapse='isCollapse',
-      :collapse-transition="collapseTransition")
+      :collapse-transition="false")
         el-menu-item(index='0')
           i.el-icon-data-analysis
           span(slot='title') 数据可视
@@ -37,7 +37,6 @@
     data() {
       return {
         isCollapse: false,
-        collapseTransition: true,
         pages: [
           {enName: 'DataVisualization', zhName: '数据可视'},
           {enName: 'SystemAccess', zhName: '系统接入'},
@@ -52,7 +51,7 @@
         this.isCollapse = !this.isCollapse;
       },
       select(index, indexPath) {
-        this.$store.commit('changeTitle', this.pages[index].zhName)
+        this.$store.commit('changeTitle', this.pages[index])
         this.$router.push({name: this.pages[index].enName})
       }
     }
@@ -94,6 +93,7 @@
   .nemu-and-page {
     display: flex;
     flex-direction: row;
+    margin-bottom: 3rem;
     .el-menu-vertical-demo:not(.el-menu--collapse) {
       min-width: 16rem;
       min-height: 80vh;
@@ -101,6 +101,7 @@
     .el-menu--collapse {
       min-width: 6rem;
       min-height: 80vh;
+
     }
 
     .main {
@@ -110,12 +111,11 @@
       font-size: 1.4rem;
       min-height: 80vh;
       position: relative;
-
       .footer {
         background-color: var(--grey);
         color: var(--dark_grey);
         position: absolute;
-        bottom: 1rem;
+        bottom: 0.35rem;
         right: calc(50% - 7rem);
       }
     }

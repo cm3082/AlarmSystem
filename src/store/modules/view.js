@@ -1,11 +1,10 @@
-
 /**
  * @define 页面视图数据
  */
 
 const state = {
-  title: '',               // 页面title
-
+  title: {enName: 'DataVisualization', zhName: '数据可视'},               // 页面title
+  categoryIndex: 0,
 }
 
 
@@ -16,6 +15,9 @@ const state = {
 const mutations = {
   changeTitle: (state, data) => {
     state.title = data;
+  },
+  categoryIndex: (state, data) => {
+    state.categoryIndex = data;
   },
 };
 

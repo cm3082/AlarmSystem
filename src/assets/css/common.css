@@ -2,18 +2,82 @@
   --white: #ffffff;
   --grey: #f8f8f8;
   --dark_grey: #999999;
+  --light_green: #f6f7fb;
   --blue_green: #109e9c;
   --dark_green: #0e9491;
 }
 
-.page{
+.page {
   background-color: var(--white);
   min-height: 78vh;
   padding: 0 1rem;
 }
 
-.cell{
+.btn-div {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-div {
+  display: flex;
+  margin: 1rem 0;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.cell {
   text-align: center;
 }
+
+.el-menu-item.is-active, .el-select-dropdown__item.selected {
+  color: var(--blue_green);
+}
+
+.el-button:active, .el-button:focus, .el-button:hover, .el-pagination button:hover,
+.el-pagination.is-background .el-pager li:not(.disabled).active, .el-dialog__headerbtn .el-dialog__close {
+  color: var(--white);
+  background-color: var(--blue_green);
+}
+
+.el-select .el-input.is-focus .el-input__inner, .el-select .el-input__inner:focus,
+.el-select .el-input__inner:hover, .el-pagination__sizes .el-input .el-input__inner:hover {
+  border-color: var(--blue_green);
+}
+
+.el-pagination__total {
+  float: left;
+}
+
+.el-pagination__sizes {
+  float: left;
+}
+
+.el-dialog__header, .el-dialog__title {
+  background-color: var(--blue_green);
+  text-align: center;
+  color: var(--white);
+  padding: 1rem 0;
+}
+
+.el-dialog__footer {
+  background-color: var(--light_green);
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.form1 .el-input, .form1 .el-select{
+  width: 80%;
+}
+.form1 .el-select .el-input{
+  width: 100%;
+}
+
+.append-div{
+  display: inline-block;
+  padding-left: 0.5rem;
+}
+
 
 

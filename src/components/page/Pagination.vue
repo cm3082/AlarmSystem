@@ -36,17 +36,12 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .block{
     text-align: right;
 
   }
-  .el-pagination__total{
-    float: left;
-  }
-  .el-pagination__sizes{
-    float: left;
-  }
+
   .ensure-btn{
     float:right;
     margin-left: 1rem;
