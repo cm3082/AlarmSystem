@@ -2,6 +2,17 @@
   .page
     Title
     Category
+    .tactical-tip
+      span.span1 当前策略组&nbsp;:&nbsp;
+      span.span2 系统默认&nbsp;
+      span.span3 (&nbsp;编号: GP000&nbsp;)
+      span.span4 切换
+    .btn-div
+      div
+        el-button(icon="el-icon-plus" @click="add") 新增策略
+        el-button(icon="el-icon-minus") 删除策略
+        el-button(icon="el-icon-success") 策略生效
+        el-button(icon="el-icon-error") 策略失效
     .table-div
       el-table(ref='multipleTable',
       :data='tableData',
@@ -53,6 +64,25 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .tactical-tip{
+    padding: 0.5rem;
+    background-color: #fdf5de;
+    border: solid 0.1rem #fada8f;
+    .span2{
+      font-size: 2rem;
+      color: #f88d45;
+    }
+    .span3{
+      font-size: 1.6rem;
+      color: #f88d45;
+    }
+    .span4{
+      color: #58bf78;
+      border-bottom: solid 1px #58bf78;
+      margin-left: 2rem;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
 </style>

@@ -1,11 +1,20 @@
 <template lang="pug">
   .navMenu
     .header
-      .logo(v-show='!isCollapse')
-        img(src="../assets/png/logo.png")
-      .mune(@click="menu")
-        img(src="../assets/png/header_menu.png")
-      div
+      div(style="display: flex;")
+        .logo(v-show='!isCollapse')
+          img(src="../assets/png/logo.png")
+        .mune(@click="menu")
+          img(src="../assets/png/header_menu.png")
+      .person-div
+        el-dropdown
+          span.el-dropdown-link
+            i.el-icon-user(style="font-size:4rem")
+            | 陈晓艳
+            i.el-icon-arrow-down.el-icon--right
+          el-dropdown-menu(slot='dropdown')
+            el-dropdown-item 平台管理
+            el-dropdown-item 退出登录
     .nemu-and-page
       el-menu.el-menu-vertical-demo(
       @select='select',
@@ -67,6 +76,7 @@
 
   .header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     background-color: var(--blue_green);
     width: 100%;
@@ -87,6 +97,13 @@
       height: 6rem;
       border-right: solid 1px var(--dark_green);
       cursor: pointer;
+    }
+    .person-div{
+      padding-right: 2rem;
+      .el-dropdown-link{
+        cursor: pointer;
+        color: var(--white);
+      }
     }
   }
 

@@ -16,8 +16,11 @@
       @selection-change='handleSelectionChange'
       :header-cell-style="{'background-color': '#f8f8f8','color': '#999999'}")
         el-table-column(type='selection', width='55')
-        el-table-column(prop='date', label='日期')
-        el-table-column(prop='name', label='姓名')
+        el-table-column(prop='date', label='接入ID')
+        el-table-column(prop='name', label='接入秘钥')
+          template(slot-scope='scope')
+            span(style='padding-right: 0.5rem') {{scope.row.name}}
+            el-tag(type="warning" style='cursor: pointer;user-select: none;') 复制
         el-table-column(prop='address', label='地址',show-overflow-tooltip)
         el-table-column(prop='date', label='日期')
         el-table-column(prop='name', label='姓名')

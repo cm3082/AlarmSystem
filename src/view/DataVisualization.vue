@@ -3,8 +3,9 @@
     Title
     Category
     .btn-div
-      el-button(icon="el-icon-message") 默认按钮
-      el-button 默认按钮
+      div
+        el-button(icon="el-icon-message") 默认按钮
+        el-button 默认按钮
     .table-div
       .my-table
         .my-table-title 告警发送汇总图
