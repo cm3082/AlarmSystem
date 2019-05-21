@@ -3,9 +3,28 @@
     Title
     Category
     .btn-div
-      div
-        el-button(icon="el-icon-message") 默认按钮
-        el-button 默认按钮
+      .select-div
+        div 统计方式&nbsp;&nbsp;:&nbsp;&nbsp;
+        el-select(placeholder='请选择')
+          el-option(label='区域一', value='shanghai')
+          el-option(label='区域二', value='beijing')
+      .select-div
+        div 通道范围&nbsp;&nbsp;:&nbsp;&nbsp;
+        el-select(placeholder='请选择')
+          el-option(label='区域一', value='shanghai')
+          el-option(label='区域二', value='beijing')
+      .select-div
+        div 起止时间&nbsp;&nbsp;:&nbsp;&nbsp;
+        el-date-picker(v-model='value1',
+        type='daterange',
+        range-separator='-',
+        start-placeholder='开始日期',
+        end-placeholder='结束日期')
+      .select-div
+        div 快速选择&nbsp;&nbsp;:&nbsp;&nbsp;
+        el-select(placeholder='请选择')
+          el-option(label='区域一', value='shanghai')
+          el-option(label='区域二', value='beijing')
     .table-div
       .my-table
         .my-table-title 告警发送汇总图
@@ -33,6 +52,7 @@
     components: {Title, Category},
     data() {
       return {
+        value1: '',
         tableData: [{
           date: '2016-05-02',
           name: '王小虎',
@@ -90,6 +110,12 @@
 </script>
 
 <style scoped lang="scss">
+  .select-div{
+    display: flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    margin: 0.5rem 0;
+  }
   .my-table {
     margin-bottom: 1rem;
     height: 30rem;
@@ -108,4 +134,5 @@
       height: 27rem;
     }
   }
+
 </style>

@@ -22,6 +22,7 @@
           {title: 'TacticalManagement', categories: ['策略管理', '成员管理', '策略配置', '排班管理']},
           {title: 'AlarmManagement', categories: ['我的告警', '所有告警',]},
           {title: 'OperationLog', categories: []},
+          {title: 'PlatformManagement', categories: ['用户权限管理']},
         ]
       }
     },

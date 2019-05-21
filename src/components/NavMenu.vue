@@ -7,14 +7,14 @@
         .mune(@click="menu")
           img(src="../assets/png/header_menu.png")
       .person-div
-        el-dropdown
+        el-dropdown(@command="handleCommand")
           span.el-dropdown-link
             i.el-icon-user(style="font-size:4rem")
             | 陈晓艳
             i.el-icon-arrow-down.el-icon--right
           el-dropdown-menu(slot='dropdown')
-            el-dropdown-item 平台管理
-            el-dropdown-item 退出登录
+            el-dropdown-item(command="5") 平台管理
+            el-dropdown-item(command="6") 退出登录
     .nemu-and-page
       el-menu.el-menu-vertical-demo(
       @select='select',
@@ -52,6 +52,7 @@
           {enName: 'TacticalManagement', zhName: '策略管理'},
           {enName: 'AlarmManagement', zhName: '告警管理'},
           {enName: 'OperationLog', zhName: '操作日志'},
+          {enName: 'PlatformManagement', zhName: '平台管理'},
         ]
       };
     },
@@ -62,6 +63,10 @@
       select(index, indexPath) {
         this.$store.commit('changeTitle', this.pages[index])
         this.$router.push({name: this.pages[index].enName})
+      },
+      handleCommand(command){
+        this.$store.commit('changeTitle', this.pages[command])
+        this.$router.push({name: this.pages[command].enName})
       }
     }
   }

@@ -17,6 +17,7 @@
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .table-div {
@@ -67,16 +68,23 @@
   padding: 1rem 0;
 }
 
-.form1 .el-input, .form1 .el-select{
-  width: 80%;
-}
-.form1 .el-select .el-input{
-  width: 100%;
-}
 
 .append-div{
-  display: inline-block;
   padding-left: 0.5rem;
+  position: absolute;
+  top: 0;
+  right: -8rem;
+}
+
+.el-dialog__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.el-date-editor.el-input, .el-date-editor.el-input__inner {
+  width: 17rem;
 }
 
 

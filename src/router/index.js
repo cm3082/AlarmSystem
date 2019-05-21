@@ -5,6 +5,7 @@ import SystemAccess from '@/view/SystemAccess'
 import TacticalManagement from '@/view/TacticalManagement'
 import AlarmManagement from '@/view/AlarmManagement'
 import OperationLog from '@/view/OperationLog'
+import PlatformManagement from '@/view/PlatformManagement'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/OperationLog',
       name: 'OperationLog',
       component: OperationLog
+    },
+    {
+      path: '/PlatformManagement',
+      name: 'PlatformManagement',
+      component: PlatformManagement
     },
   ]
 })
