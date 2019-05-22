@@ -12,7 +12,9 @@ import TacticalManagementPartner from '@/view/TacticalManagement/Partner'
 import TacticalManagementSetting from '@/view/TacticalManagement/Setting'
 import TacticalManagementSchedule from '@/view/TacticalManagement/Schedule'
 // 告警管理
-import AlarmManagement from '@/view/AlarmManagement'
+import AlarmManagement from '@/view/AlarmManagement/AlarmManagement'
+import AlarmManagementMy from '@/view/AlarmManagement/My'
+import AlarmManagementAll from '@/view/AlarmManagement/All'
 import OperationLog from '@/view/OperationLog'
 import PlatformManagement from '@/view/PlatformManagement'
 
@@ -74,6 +76,24 @@ const router = new Router({
           path: 'Schedule',
           name: 'T4',
           component: TacticalManagementSchedule
+        },
+      ]
+    },
+    {
+      path: '/AlarmManagement',
+      name: 'AlarmManagement',
+      component: AlarmManagement,
+      redirect: '/AlarmManagement/My',
+      children: [
+        {
+          path: 'My',
+          name: 'A1',
+          component: AlarmManagementMy
+        },
+        {
+          path: 'All',
+          name: 'A2',
+          component: AlarmManagementAll
         },
       ]
     },
