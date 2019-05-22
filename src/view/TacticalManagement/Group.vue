@@ -9,7 +9,7 @@
       span.span4 切换
     .btn-div
       div
-        el-button(icon="el-icon-plus" @click="add") 新增策略
+        el-button(icon="el-icon-plus" @click="") 新增策略
         el-button(icon="el-icon-minus") 删除策略
         el-button(icon="el-icon-success") 策略生效
         el-button(icon="el-icon-error") 策略失效
@@ -34,9 +34,10 @@
 </template>
 
 <script>
-  import Title from '../components/page/Title';
-  import Category from '../components/page/Category';
-  import Pagination from '../components/page/Pagination';
+  import Title from '../../components/page/Title';
+  import Category from '../../components/page/Category';
+  import Pagination from '../../components/page/Pagination';
+
   export default {
     name: "TacticalManagement",
     components: {Title, Category, Pagination},
@@ -60,24 +61,32 @@
           address: '上海市普陀区金沙江路 1516 弄'
         }],
       }
+    },
+    methods: {
+      handleSelectionChange() {
+      },
+      handleClick(data) {
+      },
+      deleteRow(data) {
+      },
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .tactical-tip{
+  .tactical-tip {
     padding: 0.5rem;
     background-color: #fdf5de;
     border: solid 0.1rem #fada8f;
-    .span2{
+    .span2 {
       font-size: 2rem;
       color: #f88d45;
     }
-    .span3{
+    .span3 {
       font-size: 1.6rem;
       color: #f88d45;
     }
-    .span4{
+    .span4 {
       color: #58bf78;
       border-bottom: solid 1px #58bf78;
       margin-left: 2rem;

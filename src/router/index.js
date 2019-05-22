@@ -1,20 +1,48 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import DataVisualization from '@/view/DataVisualization'
+// 数据可视
+import DataVisualization from '@/view/DataVisualization/DataVisualization'
+import DataVisualizationGlobal from '@/view/DataVisualization/Global'
+import DataVisualizationPersonal from '@/view/DataVisualization/Personal'
 import SystemAccess from '@/view/SystemAccess'
-import TacticalManagement from '@/view/TacticalManagement'
+// 策略管理
+import TacticalManagement from '@/view/TacticalManagement/TacticalManagement'
+import TacticalManagementGroup from '@/view/TacticalManagement/Group'
+import TacticalManagementPartner from '@/view/TacticalManagement/Partner'
+import TacticalManagementSetting from '@/view/TacticalManagement/Setting'
+import TacticalManagementSchedule from '@/view/TacticalManagement/Schedule'
+// 告警管理
 import AlarmManagement from '@/view/AlarmManagement'
 import OperationLog from '@/view/OperationLog'
 import PlatformManagement from '@/view/PlatformManagement'
 
 Vue.use(Router)
 
-export default new Router({
+
+const router = new Router({
   routes: [
     {
       path: '/',
+      name: 'index',
+      redirect: '/DataVisualization/Global',
+    },
+    {
+      path: '/DataVisualization',
       name: 'DataVisualization',
-      component: DataVisualization
+      component: DataVisualization,
+      redirect: '/DataVisualization/Global',
+      children: [
+        {
+          path: 'Global',
+          name: 'D1',
+          component: DataVisualizationGlobal
+        },
+        {
+          path: 'Personal',
+          name: 'D2',
+          component: DataVisualizationPersonal
+        },
+      ]
     },
     {
       path: '/SystemAccess',
@@ -24,7 +52,30 @@ export default new Router({
     {
       path: '/TacticalManagement',
       name: 'TacticalManagement',
-      component: TacticalManagement
+      component: TacticalManagement,
+      redirect: '/TacticalManagement/Group',
+      children: [
+        {
+          path: 'Group',
+          name: 'T1',
+          component: TacticalManagementGroup
+        },
+        {
+          path: 'Partner',
+          name: 'T2',
+          component: TacticalManagementPartner
+        },
+        {
+          path: 'Setting',
+          name: 'T3',
+          component: TacticalManagementSetting
+        },
+        {
+          path: 'Schedule',
+          name: 'T4',
+          component: TacticalManagementSchedule
+        },
+      ]
     },
     {
       path: '/AlarmManagement',
@@ -43,3 +94,12 @@ export default new Router({
     },
   ]
 })
+
+router.beforeEach((to, from, next) => {
+
+
+
+  next()
+})
+
+export default router

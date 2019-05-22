@@ -2,7 +2,7 @@
   .category(v-if="show")
     .category-item(v-for="item,index in categories"
     @click="switchCategory(index)"
-    :class="activeIndex==index?'active':'inactive'") {{item}}
+    :class="activeIndex==index?'active':'inactive'") {{item.zh}}
 
 </template>
 
@@ -16,26 +16,11 @@
         show: true,
         activeIndex: 0,
         categories: [],
-        categoriesList: [
-          {title: 'DataVisualization', categories: ['全局统计', '个人统计']},
-          {title: 'SystemAccess', categories: []},
-          {title: 'TacticalManagement', categories: ['策略管理', '成员管理', '策略配置', '排班管理']},
-          {title: 'AlarmManagement', categories: ['我的告警', '所有告警',]},
-          {title: 'OperationLog', categories: []},
-          {title: 'PlatformManagement', categories: ['用户权限管理']},
-        ]
       }
     },
     created() {
-      const self = this
-      this.categoriesList.map(item => {
-        if (item.title == this.view.title.enName) {
-          self.categories = item.categories
-          if (self.categories.length == 0) {
-            self.show = false
-          }
-        }
-      })
+      this.categories = this.view.pages[this.view.navmemuIndex].categories
+      this.show = this.categories.length == 0 ? false : true
       this.activeIndex = this.view.categoryIndex
     },
     computed: {
@@ -48,6 +33,7 @@
         }
         this.activeIndex = index
         this.$store.commit('categoryIndex', index)
+        this.$router.push({name: this.view.pages[this.view.navmemuIndex].categories[index].en})
       }
     }
   }

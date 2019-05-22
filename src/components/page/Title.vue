@@ -1,7 +1,7 @@
 <template lang="pug">
   .title
     .title-line |
-    .title-text {{view.title.zhName}}
+    .title-text {{view.pages[view.navmemuIndex].zhName}}
 </template>
 
 <script>

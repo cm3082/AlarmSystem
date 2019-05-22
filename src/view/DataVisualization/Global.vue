@@ -5,24 +5,24 @@
     .btn-div
       .select-div
         div 统计方式&nbsp;&nbsp;:&nbsp;&nbsp;
-        el-select(placeholder='请选择')
+        el-select(v-model='value1',placeholder='请选择')
           el-option(label='区域一', value='shanghai')
           el-option(label='区域二', value='beijing')
       .select-div
         div 通道范围&nbsp;&nbsp;:&nbsp;&nbsp;
-        el-select(placeholder='请选择')
+        el-select(v-model='value2',placeholder='请选择')
           el-option(label='区域一', value='shanghai')
           el-option(label='区域二', value='beijing')
       .select-div
         div 起止时间&nbsp;&nbsp;:&nbsp;&nbsp;
-        el-date-picker(v-model='value1',
+        el-date-picker(v-model='value3',
         type='daterange',
         range-separator='-',
         start-placeholder='开始日期',
         end-placeholder='结束日期')
       .select-div
         div 快速选择&nbsp;&nbsp;:&nbsp;&nbsp;
-        el-select(placeholder='请选择')
+        el-select(v-model='value4',placeholder='请选择')
           el-option(label='区域一', value='shanghai')
           el-option(label='区域二', value='beijing')
     .table-div
@@ -43,16 +43,19 @@
 </template>
 
 <script>
-  import Title from '../components/page/Title';
-  import Category from '../components/page/Category';
+  import Title from '../../components/page/Title';
+  import Category from '../../components/page/Category';
   import {mapState, mapActions} from 'vuex';
 
   export default {
-    name: 'DataVisualization',
+    name: 'Global',
     components: {Title, Category},
     data() {
       return {
         value1: '',
+        value2: '',
+        value3: '',
+        value4: '',
         tableData: [{
           date: '2016-05-02',
           name: '王小虎',

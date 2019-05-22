@@ -4,7 +4,7 @@
       div(style="display: flex;")
         .logo(v-show='!isCollapse')
           img(src="../assets/png/logo.png")
-        .mune(@click="menu")
+        .mune(@click="foldMenu")
           img(src="../assets/png/header_menu.png")
       .person-div
         el-dropdown(@command="handleCommand")
@@ -17,7 +17,7 @@
             el-dropdown-item(command="6") 退出登录
     .nemu-and-page
       el-menu.el-menu-vertical-demo(
-      @select='select',
+      @select='selectMenu',
       :collapse='isCollapse',
       :collapse-transition="false")
         el-menu-item(index='0')
@@ -41,32 +41,34 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex';
+
   export default {
     name: "NavMenu",
     data() {
       return {
         isCollapse: false,
-        pages: [
-          {enName: 'DataVisualization', zhName: '数据可视'},
-          {enName: 'SystemAccess', zhName: '系统接入'},
-          {enName: 'TacticalManagement', zhName: '策略管理'},
-          {enName: 'AlarmManagement', zhName: '告警管理'},
-          {enName: 'OperationLog', zhName: '操作日志'},
-          {enName: 'PlatformManagement', zhName: '平台管理'},
-        ]
       };
     },
+    computed: {
+      ...mapState(["view"]),
+    },
+    created() {
+
+    },
     methods: {
-      menu() {
+      foldMenu() {
         this.isCollapse = !this.isCollapse;
       },
-      select(index, indexPath) {
-        this.$store.commit('changeTitle', this.pages[index])
-        this.$router.push({name: this.pages[index].enName})
+      selectMenu(index, indexPath) {
+        this.$store.commit('navmemuIndex', index)
+        this.$store.commit('categoryIndex', 0)
+        this.$router.push({name: this.view.pages[index].enName})
       },
-      handleCommand(command){
-        this.$store.commit('changeTitle', this.pages[command])
-        this.$router.push({name: this.pages[command].enName})
+      handleCommand(command) {
+        this.$store.commit('navmemuIndex', command)
+        this.$store.commit('categoryIndex', 0)
+        this.$router.push({name: this.view.pages[command].enName})
       }
     }
   }
@@ -103,9 +105,9 @@
       border-right: solid 1px var(--dark_green);
       cursor: pointer;
     }
-    .person-div{
+    .person-div {
       padding-right: 2rem;
-      .el-dropdown-link{
+      .el-dropdown-link {
         cursor: pointer;
         color: var(--white);
       }
