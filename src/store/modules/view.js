@@ -48,8 +48,8 @@ const state = {
       ]
     },
   ],
-  navmemuIndex: sessionStorage.getItem('navmemuIndex'),
-  categoryIndex: sessionStorage.getItem('categoryIndex'),
+  navmemuIndex: sessionStorage.getItem('navmemuIndex') ? sessionStorage.getItem('navmemuIndex') : 0,
+  categoryIndex: sessionStorage.getItem('categoryIndex') ? sessionStorage.getItem('categoryIndex') : 0,
 }
 
 const setStorage = (key, value) => {

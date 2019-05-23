@@ -231,7 +231,7 @@
     data() {
       return {
         dialogVisible1: false,
-        dialogVisible2: true,
+        dialogVisible2: false,
         tableData: [{
           date: '2016-05-02',
           name: '王小虎',

@@ -118,6 +118,7 @@
     align-items: baseline;
     flex-wrap: nowrap;
     margin: 0.5rem 0;
+    white-space : nowrap;
   }
   .my-table {
     margin-bottom: 1rem;
