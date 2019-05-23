@@ -33,21 +33,191 @@
     Pagination
     //新增策略
     .popup
-      el-dialog(title='新建策略组', :visible.sync='dialogVisible1')
+      el-dialog(title='新建策略', :visible.sync='dialogVisible1')
         el-form.form1(:model='ruleForm', :rules='rules', label-position="left", ref='ruleForm', label-width='8rem')
-          el-form-item(label='告警标题:', prop='name')
-            el-input(v-model='ruleForm.name')
-          el-form-item(label='用户类型:', prop='name')
-            el-select(v-model='ruleForm.name')
-              el-option(value='海四达')
-          el-form-item(label='告警内容:', prop='name',:inline="true")
-            el-input(v-model='ruleForm.name')
-          el-form-item(label='接收成员:', prop='name',:inline="true")
-            el-input(v-model='ruleForm.name')
+          el-row(:gutter="20")
+            el-col(:span="12")
+              el-form-item(label='策略名称:', prop='name')
+                el-input(v-model='ruleForm.name')
+            el-col(:span="12")
+              el-form-item(label='系统类型:', prop='name')
+                el-input(v-model='ruleForm.name')
+          el-row(:gutter="20")
+            el-col(:span="12")
+              el-form-item(label='策略名称:', prop='name')
+                el-select(v-model='ruleForm.name')
+                  el-option(value='海四达')
+            el-col(:span="12")
+              el-form-item(label='系统类型:', prop='name')
+                el-select(v-model='ruleForm.name')
+                  el-option(value='海四达')
+          el-form-item(label='策略状态:', prop='name',:inline="true")
+            el-radio-group(v-model='ruleForm.resource')
+              el-radio(label='生效')
+              el-radio(label='失效')
+          el-form-item(label='告警规则:', prop='name',:inline="true")
+            .table-div2
+              el-table(ref='multipleTable',
+              :data='tableData',
+              style='width: 100%',
+              @selection-change='handleSelectionChange'
+              :header-cell-style="{'background-color': '#f8f8f8','color': '#999999'}")
+                el-table-column(type='index', label='序号', width='55')
+                el-table-column(prop='date', label='告警IP', width='120')
+                  template(slot-scope='scope')
+                    el-input(v-model='ruleForm.name')
+                el-table-column(prop='name', label='告警事件', width='120')
+                  template(slot-scope='scope')
+                    el-select(v-model='ruleForm.name')
+                      el-option(value='海四达')
+                el-table-column(prop='address', label='告警类型', width='120')
+                  template(slot-scope='scope')
+                    el-select(v-model='ruleForm.name')
+                      el-option(value='海四达')
+                el-table-column(prop='date', label='告警联系人', width='100')
+                  template(slot-scope='scope')
+                    el-button() 选择 ...
+                el-table-column(label='操作')
+                  template(slot-scope='scope')
+                    i.el-icon-error-del.el-icon-error
+              .add-setting-rule(@click="addSettingRule") +新增规则
         .dialog-footer(slot='footer')
           el-button(@click="submitForm('ruleForm')") 确 定
           el-button(@click="resetForm('ruleForm')") 取 消
-
+    //新增规则
+    .popup
+      el-dialog(title='新增规则', :visible.sync='dialogVisible2')
+        el-form.form1(:model='ruleForm', :rules='rules', label-position="left", ref='ruleForm', label-width='8rem')
+          el-form-item(label='策略模板:', prop='name')
+            el-select(v-model='ruleForm.name')
+              el-option(value='海四达')
+          el-form-item(label='策略名称:', prop='name')
+            el-input(v-model='ruleForm.name')
+          el-row(:gutter="20")
+            el-col(:span="9")
+              el-form-item(label='默认告警:', prop='name')
+                el-radio-group(v-model='ruleForm.resource')
+                  el-radio(label='生效')
+            el-col(:span="15")
+              el-form-item(label='告警方式:', prop='name')
+                el-checkbox-group(v-model='ruleForm.type')
+                  el-checkbox(label='邮件', name='type')
+                  el-checkbox(label='微信', name='type')
+                  el-checkbox(label='短信', name='type')
+                  el-checkbox(label='电话', name='type')
+          el-form-item(label='告警联系人:', prop='name',:inline="true")
+            el-button 选择 ...
+          el-form-item(label='运营商告警:', prop='name',:inline="true")
+            .table-div2
+              el-row()
+                el-col(:span="4")
+                  span 批次
+                el-col(:span="20")
+                  span 第2批
+              el-row()
+                el-col(:span="4")
+                  span 地区
+                el-col(:span="20")
+                  el-button 选择 ...
+              el-row()
+                el-col(:span="4")
+                  span 类别
+                el-col(:span="20")
+                  el-button 选择 ...
+              el-row()
+                el-col(:span="4")
+                  span 运营商
+                el-col(:span="20")
+                  el-input
+              el-row()
+                el-col(:span="4")
+                  span 告警级别
+                el-col(:span="20")
+                  el-select
+                    el-option
+              el-row()
+                el-col(:span="4")
+                  span 告警方式
+                el-col(:span="20")
+                  el-checkbox-group
+                    el-checkbox(label="邮件")
+                    el-checkbox(label="微信")
+                    el-checkbox(label="短信")
+                    el-checkbox(label="电话")
+              el-row()
+                el-col(:span="4")
+                  span 告警操作人
+                el-col(:span="20")
+                  el-button 选择 ...
+              el-row()
+                el-col(:span="4")
+                  span 告警内容
+                el-col(:span="20")
+                  el-input(type="textarea")
+              el-row()
+                el-col(:span="4")
+                  span 操作
+                el-col(:span="20")
+                  el-button 删除
+            .add-div2-bottom
+              span +添加运营商
+          el-form-item(label='内部人告警:', prop='name',:inline="true")
+            .table-div2
+              el-row()
+                el-col(:span="4")
+                  span 批次
+                el-col(:span="20")
+                  span 第1批
+              el-row()
+                el-col(:span="4")
+                  span 地区
+                el-col(:span="20")
+                  el-button 选择 ...
+              el-row()
+                el-col(:span="4")
+                  span 类别
+                el-col(:span="20")
+                  el-button 选择 ...
+              el-row()
+                el-col(:span="4")
+                  span 运营商
+                el-col(:span="20")
+                  el-input
+              el-row()
+                el-col(:span="4")
+                  span 告警级别
+                el-col(:span="20")
+                  el-select
+                    el-option
+              el-row()
+                el-col(:span="4")
+                  span 告警方式
+                el-col(:span="20")
+                  el-checkbox-group
+                    el-checkbox(label="邮件")
+                    el-checkbox(label="微信")
+                    el-checkbox(label="短信")
+                    el-checkbox(label="电话")
+              el-row()
+                el-col(:span="4")
+                  span 告警操作人
+                el-col(:span="20")
+                  el-button 选择 ...
+              el-row()
+                el-col(:span="4")
+                  span 告警内容
+                el-col(:span="20")
+                  el-input(type="textarea")
+              el-row()
+                el-col(:span="4")
+                  span 操作
+                el-col(:span="20")
+                  el-button 删除
+            .add-div2-bottom
+              span +添加
+        .dialog-footer(slot='footer')
+          el-button(@click="submitForm('ruleForm')") 确 定
+          el-button(@click="resetForm('ruleForm')") 取 消
 </template>
 
 <script>
@@ -61,6 +231,7 @@
     data() {
       return {
         dialogVisible1: false,
+        dialogVisible2: true,
         tableData: [{
           date: '2016-05-02',
           name: '王小虎',
@@ -115,7 +286,7 @@
       }
     },
     methods: {
-      add(){
+      add() {
         this.dialogVisible1 = true
       },
       handleSelectionChange() {
@@ -124,6 +295,10 @@
       },
       deleteRow(data) {
       },
+      addSettingRule(){
+        this.dialogVisible1 = false
+        this.dialogVisible2 = true
+      }
     }
   }
 </script>
@@ -145,6 +320,31 @@
       color: #58bf78;
       border-bottom: solid 1px #58bf78;
       margin-left: 2rem;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+  .form1{
+    width: 80%;
+  }
+  .el-icon-error-del{
+    cursor: pointer;
+  }
+  .add-setting-rule{
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+    color: #f88d45;
+    cursor: pointer;
+    user-select: none;
+  }
+  .add-div2-bottom{
+    width: 100%;
+    text-align: center;
+    background-color: #fdf5de;
+    color: #f88d45;
+    border: solid 0.1rem #f88d45;
+    span{
       cursor: pointer;
       user-select: none;
     }

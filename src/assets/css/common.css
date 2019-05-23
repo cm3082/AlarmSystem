@@ -28,6 +28,16 @@
   justify-content: space-between;
 }
 
+.table-div2 {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.table-div2 .el-row{
+  margin-bottom: 0.5rem;
+}
+
 .cell {
   text-align: center;
 }
@@ -68,8 +78,7 @@
   padding: 1rem 0;
 }
 
-
-.append-div{
+.append-div {
   padding-left: 0.5rem;
   position: absolute;
   top: 0;
@@ -83,9 +92,10 @@
   align-items: center;
 }
 
-.el-date-editor.el-input, .el-date-editor.el-input__inner {
-  width: 17rem;
+.el-date-editor.el-input, .el-date-editor.el-input__inner, .el-select {
+  width: 100%;
 }
+
 
 
 

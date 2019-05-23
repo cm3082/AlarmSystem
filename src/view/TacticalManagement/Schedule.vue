@@ -31,17 +31,47 @@
     Pagination
     //新增排班
     .popup
-      el-dialog(title='新建策略组', :visible.sync='dialogVisible1')
+      el-dialog(title='新增排班', :visible.sync='dialogVisible1')
         el-form.form1(:model='ruleForm', :rules='rules', label-position="left", ref='ruleForm', label-width='8rem')
-          el-form-item(label='告警标题:', prop='name')
-            el-input(v-model='ruleForm.name')
-          el-form-item(label='用户类型:', prop='name')
-            el-select(v-model='ruleForm.name')
-              el-option(value='海四达')
-          el-form-item(label='告警内容:', prop='name',:inline="true")
-            el-input(v-model='ruleForm.name')
-          el-form-item(label='接收成员:', prop='name',:inline="true")
-            el-input(v-model='ruleForm.name')
+          el-row(:gutter="20")
+            el-col(:span="12")
+              el-form-item(label='名称:', prop='name')
+                el-input(v-model='ruleForm.name')
+            el-col(:span="12")
+              el-form-item(label='失效时间:', prop='name')
+                el-date-picker(v-model='value1', type='date', placeholder='选择日期')
+          el-row(:gutter="20")
+            el-col(:span="12")
+              el-form-item(label='轮班周期:', prop='name')
+                el-row
+                  el-col(:span="11")
+                    el-input
+                  el-col(:span="11" :offset="2")
+                    el-select
+                      el-option(value="周")
+            el-col(:span="12")
+              el-form-item(label='值班通知:', prop='name')
+                el-radio-group(v-model='ruleForm.resource')
+                  el-radio(label='启用')
+                  el-radio(label='禁用')
+          el-form-item(label='排班规则:', prop='name',:inline="true")
+            .table-div2
+              el-table(ref='multipleTable',
+              :data='tableData',
+              style='width: 100%',
+              @selection-change='handleSelectionChange'
+              :header-cell-style="{'background-color': '#f8f8f8','color': '#999999'}")
+                el-table-column(type='index', label='批次', width='55')
+                el-table-column(prop='date', label='值班人员')
+                  template(slot-scope='scope')
+                    el-input(v-model='ruleForm.name')
+                el-table-column(prop='date', label='选择值班人员', width='120')
+                  template(slot-scope='scope')
+                    el-button() 选择 ...
+                el-table-column(label='操作', width='55')
+                  template(slot-scope='scope')
+                    i.el-icon-error-del.el-icon-error
+              .schedule-table-add +新增一行
         .dialog-footer(slot='footer')
           el-button(@click="submitForm('ruleForm')") 确 定
           el-button(@click="resetForm('ruleForm')") 取 消
@@ -59,6 +89,7 @@
     data() {
       return {
         dialogVisible1: false,
+        value1: '',
         tableData: [{
           date: '2016-05-02',
           name: '王小虎',
@@ -113,7 +144,7 @@
       }
     },
     methods: {
-      add(){
+      add() {
         this.dialogVisible1 = true
       },
       handleSelectionChange() {
@@ -146,5 +177,13 @@
       cursor: pointer;
       user-select: none;
     }
+  }
+  .schedule-table-add{
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+    color: #f88d45;
+    cursor: pointer;
+    user-select: none;
   }
 </style>
