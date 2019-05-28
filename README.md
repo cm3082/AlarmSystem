@@ -18,7 +18,7 @@ $ npm install vue-cli -g
 
 ### 开发工具
 
-- HTML采用[pugjs](https://pugjs.org/api/getting-started.html)； pugjs一种健康的、优雅的、特性丰富的模版语言。简化HTML代码。
+- HTML采用[pug](https://pugjs.org/api/getting-started.html)； pug一种健康的、优雅的、特性丰富的模版语言。简化HTML代码。
 - CSS使用[sass](http://sass-lang.com/)； sass一种成熟的、稳定的、强大的CSS扩展语言。
 - Javascript支持[ES6](http://es6.ruanyifeng.com/)；提供了不少非常棒的特性。
 
@@ -108,7 +108,27 @@ AlarmSystem/
 ├── .gitignore                      // git要忽略文件的配置，里头指定的文件将不纳入版本控制
 ├── index.html                      // vue项目的主html页面, webpack构建后的js和css文件自动插入文件
 ├── package.json                    // 应用构建信息,可以看到所有用到的依赖
-├── README.md                       // 当前所看内容书写处
+└── README.md                       // 当前所看内容书写处
 ```
 
 
+## 开发指导
+
+
+### 一.数据流转
+
+
+```
+aixos通过接口地址(src/http/api)请求后台, 通过vuex中的actions(src/store/actions)将数据(一般为json类型)暂存vuex的store(src/store/modules)
+中, vue视图(src/views/)及组件(src/components)获取vuex中的数据, 通过vue的动态渲染能力将数据渲染到页面
+```
+
+
+### 二.用户访问
+
+
+```
+用户访问index.html(vue单页面应用的入口) --> App.vue(index.html中对应的id为app的div) --> src/main.js(主入口js,挂载依赖)
+--> src/router(路由,配置页面路径) --> src/views(页面, components组件可拔插其中) --> src/store/modules(存储页面展示需要的数据)
+--> src/store/actions(利用axios向后台发送http请求) --> src/http/api(后台接口地址)
+```
