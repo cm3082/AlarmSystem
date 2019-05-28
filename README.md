@@ -119,8 +119,9 @@ AlarmSystem/
 
 
 ```
-aixos通过接口地址(src/http/api)请求后台, 通过vuex中的actions(src/store/actions)将数据(一般为json类型)暂存vuex的store(src/store/modules)
-中, vue视图(src/views/)及组件(src/components)获取vuex中的数据, 通过vue的动态渲染能力将数据渲染到页面
+aixos通过接口地址(src/http/api)请求后台, 通过vuex中的actions(src/store/actions)将数据(一般为json类型)暂存vuex的
+store(src/store/modules)中, vue视图(src/views/)及组件(src/components)获取vuex中的数据, 通过vue的动态渲染能力将
+数据渲染到页面
 ```
 
 
@@ -128,7 +129,8 @@ aixos通过接口地址(src/http/api)请求后台, 通过vuex中的actions(src/s
 
 
 ```
-用户访问index.html(vue单页面应用的入口) --> App.vue(index.html中对应的id为app的div) --> src/main.js(主入口js,挂载依赖)
---> src/router(路由,配置页面路径) --> src/views(页面, components组件可拔插其中) --> src/store/modules(存储页面展示需要的数据)
---> src/store/actions(利用axios向后台发送http请求) --> src/http/api(后台接口地址)
+用户访问index.html(vue单页面应用的入口) --> App.vue(index.html中对应的id为app的div) -->
+src/main.js(主入口js,挂载依赖)--> src/router(路由,配置页面路径) -->
+src/views(页面, components组件可拔插其中) --> src/store/modules(存储页面展示需要的数据)-->
+src/store/actions(利用axios向后台发送http请求) --> src/http/api(后台接口地址)
 ```
