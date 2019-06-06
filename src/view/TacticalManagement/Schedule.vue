@@ -178,6 +178,7 @@
       user-select: none;
     }
   }
+
   .schedule-table-add{
     width: 100%;
     text-align: center;

@@ -1,6 +1,7 @@
 const api = {
   getChessData: '/getChessData',
   setChessData: '/setChessData',
+  getDataview: '/dataview',
 
 }
 

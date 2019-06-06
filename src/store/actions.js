@@ -18,10 +18,24 @@ export default {
     return new Promise((resolve, reject) => {
       axios.post(api.setChessData, data).then(res => {
 
+        if(res.code = '200'){
 
-        commit('login', '123');
+          commit('login', '123');
 
-        resolve(res)
+          resolve(res)
+        }else{
+          reject()
+        }
+      })
+    })
+  },
+
+  getDataview ({commit}, params) {
+
+    return new Promise((resolve, reject) => {
+      axios.get(api.getDataview, params).then(res => {
+          commit('setDataview', res.data);
+          resolve(res)
       })
     })
   },

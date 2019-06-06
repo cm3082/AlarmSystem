@@ -75,19 +75,40 @@
         }],
       }
     },
-    mounted() {
-      setTimeout(() => {
+    // mounted() {
+    //   setTimeout(() => {
+    //     this.drawLine();
+    //   })
+    //   // var self = this
+    //   // this.getChessData.then(res=>{
+    //   //   self.value1 = res.vaule
+    //   // })
+    // },
+    watch: {
+      dataview: function (newValue, oldValue) {
         this.drawLine();
-      })
+      }
+    },
+    mounted(){
+
+    },
+    created() {
+      this.getDataview()
     },
     computed: {
-      ...mapState(["user", "report"]),
+      // ...mapState(["user", "report"]),
+      dataview() {
+        return this.$store.state.report.dataview
+      }
     },
     methods: {
       ...mapActions([
-        'getChessData', 'setChessData'
+        'getChessData', 'setChessData', 'getDataview'
       ]),
       drawLine() {
+        var self = this
+        console.log(self.dataview.templatename)
+        console.log(self.dataview['templatedatas'])
         // 基于准备好的dom，初始化echarts实例
         let myChart = this.$echarts.init(document.getElementById('myChart'))
         // 绘制图表
@@ -95,13 +116,13 @@
           title: {text: ''},
           tooltip: {},
           xAxis: {
-            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+            data: self.dataview['templatename']
           },
           yAxis: {},
           series: [{
             name: '销量',
             type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
+            data: self.dataview['templatedatas']
           }]
         });
         window.onresize = function () {
@@ -113,13 +134,14 @@
 </script>
 
 <style scoped lang="scss">
-  .select-div{
+  .select-div {
     display: flex;
     align-items: baseline;
     flex-wrap: nowrap;
     margin: 0.5rem 0;
-    white-space : nowrap;
+    white-space: nowrap;
   }
+
   .my-table {
     margin-bottom: 1rem;
     height: 30rem;
